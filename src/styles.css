@@ -1,4 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+:root {
+  --pink-main: #e75480;
+  --pink-light: #f8e6ee;
+  --grey-main: #23272f;
+  --grey-light: #f4f4f7;
+  --grey-mid: #b0b3b8;
+}
+body {
+  background: var(--grey-light);
+  color: var(--grey-main);
+  font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  min-height: 100vh;
+  letter-spacing: 0.01em;
+}
+a {
+  color: var(--pink-main);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+a:hover {
+  color: #c13c6a;
+  text-decoration: underline;
+}
