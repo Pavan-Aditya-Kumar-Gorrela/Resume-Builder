@@ -1,0 +1,48 @@
+.professional-resume {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #fff;
+  color: #222;
+  padding: 32px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  width: 100%;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  --main-color: #1976d2;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.main-content {
+  display: flex;
+  gap: 32px;
+}
+
+.left-column, .right-column {
+  flex: 1;
+}
+
+.section {
+  margin-bottom: 24px;
+}
+
+h1 {
+  font-size: 2.2em;
+  margin: 0;
+}
+
+h2 {
+  font-size: 1.1em;
+  margin-bottom: 10px;
+  border-bottom: 2px solid var(--main-color);
+  padding-bottom: 4px;
+  color: var(--main-color);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+ul {
+  padding-left: 20px;
+} 

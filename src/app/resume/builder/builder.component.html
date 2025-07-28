@@ -1,46 +1,234 @@
-<h2>Resume Builder</h2>
-
-<form [formGroup]="resumeForm">
-
-  <fieldset formGroupName="personal">
-    <legend>Personal Info</legend>
-    <input formControlName="name" placeholder="Full Name" />
-    <input formControlName="title" placeholder="Professional Title" />
-    <input formControlName="email" placeholder="Email" type="email" />
-  </fieldset>
-
-  <fieldset>
-    <legend>Education</legend>
-    <div formArrayName="education">
-      <div *ngFor="let edu of education.controls; let i=index" [formGroupName]="i">
-        <input formControlName="institution" placeholder="Institution" />
-        <input formControlName="degree" placeholder="Degree" />
-        <input formControlName="year" placeholder="Year" />
-      </div>
-      <button type="button" (click)="addEducation()">Add Education</button>
+<mat-card>
+  <mat-card-title>Resume Builder</mat-card-title>
+  <form [formGroup]="resumeForm">
+    <div class="customization-controls">
+      <mat-form-field appearance="outline" class="customization-field">
+        <mat-label>Font</mat-label>
+        <mat-select [value]="customization?.value.font" (selectionChange)="setFont($event.value)">
+          <mat-option *ngFor="let font of fonts" [value]="font">{{ font }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="customization-field">
+        <mat-label>Color</mat-label>
+        <mat-select [value]="customization?.value.color" (selectionChange)="setColor($event.value)">
+          <mat-option *ngFor="let color of colors" [value]="color">
+            <span class="color-swatch" [style.background]="color"></span> {{ color }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
-  </fieldset>
-
-  <fieldset>
-    <legend>Experience</legend>
-    <div formArrayName="experience">
-      <div *ngFor="let exp of experience.controls; let i=index" [formGroupName]="i">
-        <input formControlName="company" placeholder="Company" />
-        <input formControlName="role" placeholder="Role" />
-        <input formControlName="years" placeholder="Years" />
-      </div>
-      <button type="button" (click)="addExperience()">Add Experience</button>
+    <mat-divider></mat-divider>
+    <div formGroupName="personal">
+      <mat-form-field appearance="outline" class="full-width" matTooltip="Your full name as you want it to appear on your resume" required>
+        <mat-label>Full Name</mat-label>
+        <input matInput formControlName="name" placeholder="Full Name" required />
+        <mat-error *ngIf="resumeForm.get('personal.name')?.invalid && resumeForm.get('personal.name')?.touched">Name is required</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="full-width" matTooltip="Your professional headline or current job title">
+        <mat-label>Professional Title</mat-label>
+        <input matInput formControlName="title" placeholder="Professional Title" />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="full-width" matTooltip="Your email address" required>
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" placeholder="Email" type="email" required />
+        <mat-error *ngIf="resumeForm.get('personal.email')?.invalid && resumeForm.get('personal.email')?.touched">Valid email is required</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="full-width" matTooltip="Your phone number">
+        <mat-label>Phone</mat-label>
+        <input matInput formControlName="phone" placeholder="Phone" type="tel" />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="full-width" matTooltip="Your LinkedIn profile URL">
+        <mat-label>LinkedIn</mat-label>
+        <input matInput formControlName="linkedin" placeholder="LinkedIn URL" />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="full-width" matTooltip="Your GitHub profile URL">
+        <mat-label>GitHub</mat-label>
+        <input matInput formControlName="github" placeholder="GitHub URL" />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="full-width" matTooltip="Your portfolio or personal website">
+        <mat-label>Portfolio</mat-label>
+        <input matInput formControlName="portfolio" placeholder="Portfolio URL" />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="full-width" matTooltip="Your Twitter handle or profile URL">
+        <mat-label>Twitter</mat-label>
+        <input matInput formControlName="twitter" placeholder="Twitter URL" />
+      </mat-form-field>
     </div>
-  </fieldset>
-
-  <fieldset>
-    <legend>Skills</legend>
-    <div formArrayName="skills">
-      <div *ngFor="let skill of skills.controls; let i=index">
-        <input [formControlName]="i" placeholder="Skill" />
+    <mat-divider></mat-divider>
+    <div>
+      <h3>Education</h3>
+      <div formArrayName="education">
+        <div *ngFor="let edu of education.controls; let i=index" [formGroupName]="i">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Institution</mat-label>
+            <input matInput formControlName="institution" placeholder="Institution" />
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Degree</mat-label>
+            <input matInput formControlName="degree" placeholder="Degree" />
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Year</mat-label>
+            <input matInput formControlName="year" placeholder="Year" />
+          </mat-form-field>
+        </div>
+        <button mat-raised-button color="primary" type="button" (click)="addEducation()">Add Education</button>
       </div>
-      <button type="button" (click)="addSkill()">Add Skill</button>
     </div>
-  </fieldset>
-
-</form>
+    <mat-divider></mat-divider>
+    <div>
+      <h3>Experience</h3>
+      <div formArrayName="experience">
+        <div *ngFor="let exp of experience.controls; let i=index" [formGroupName]="i">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Company</mat-label>
+            <input matInput formControlName="company" placeholder="Company" />
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Role</mat-label>
+            <input matInput formControlName="role" placeholder="Role" />
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Years</mat-label>
+            <input matInput formControlName="years" placeholder="Years" />
+          </mat-form-field>
+        </div>
+        <button mat-raised-button color="primary" type="button" (click)="addExperience()">Add Experience</button>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+    <div>
+      <h3>Skills</h3>
+      <div formArrayName="skills">
+        <div *ngFor="let skill of skills.controls; let i=index">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Skill</mat-label>
+            <input matInput [formControlName]="i" placeholder="Skill" />
+          </mat-form-field>
+        </div>
+        <button mat-raised-button color="primary" type="button" (click)="addSkill()">Add Skill</button>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+    <!-- Certifications -->
+    <div>
+      <h3 matTooltip="Add your certifications, licenses, or courses">Certifications</h3>
+      <div formArrayName="certifications">
+        <div *ngFor="let cert of certifications.controls; let i=index" [formGroupName]="i" class="custom-section-block">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Certification Name</mat-label>
+            <input matInput formControlName="name" placeholder="Certification Name" required />
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Issuer</mat-label>
+            <input matInput formControlName="issuer" placeholder="Issuer" />
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Year</mat-label>
+            <input matInput formControlName="year" placeholder="Year" />
+          </mat-form-field>
+          <button mat-icon-button color="warn" type="button" (click)="removeCertification(i)" aria-label="Remove certification">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+        <button mat-raised-button color="accent" type="button" (click)="addCertification()">Add Certification</button>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+    <!-- Projects -->
+    <div>
+      <h3 matTooltip="Add your key projects">Projects</h3>
+      <div formArrayName="projects">
+        <div *ngFor="let project of projects.controls; let i=index" [formGroupName]="i" class="custom-section-block">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Project Name</mat-label>
+            <input matInput formControlName="name" placeholder="Project Name" required />
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Description</mat-label>
+            <textarea matInput formControlName="description" placeholder="Project Description" rows="2"></textarea>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Link</mat-label>
+            <input matInput formControlName="link" placeholder="Project Link" />
+          </mat-form-field>
+          <button mat-icon-button color="warn" type="button" (click)="removeProject(i)" aria-label="Remove project">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+        <button mat-raised-button color="accent" type="button" (click)="addProject()">Add Project</button>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+    <!-- Languages -->
+    <div>
+      <h3 matTooltip="Add languages you know">Languages</h3>
+      <div formArrayName="languages">
+        <div *ngFor="let lang of languages.controls; let i=index" [formGroupName]="i" class="custom-section-block">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Language</mat-label>
+            <input matInput formControlName="name" placeholder="Language" required />
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Proficiency</mat-label>
+            <input matInput formControlName="proficiency" placeholder="Proficiency (e.g. Native, Fluent, Intermediate)" />
+          </mat-form-field>
+          <button mat-icon-button color="warn" type="button" (click)="removeLanguage(i)" aria-label="Remove language">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+        <button mat-raised-button color="accent" type="button" (click)="addLanguage()">Add Language</button>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+    <!-- Awards -->
+    <div>
+      <h3 matTooltip="Add awards, honors, or recognitions">Awards</h3>
+      <div formArrayName="awards">
+        <div *ngFor="let award of awards.controls; let i=index" [formGroupName]="i" class="custom-section-block">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Award Name</mat-label>
+            <input matInput formControlName="name" placeholder="Award Name" required />
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Year</mat-label>
+            <input matInput formControlName="year" placeholder="Year" />
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Description</mat-label>
+            <textarea matInput formControlName="description" placeholder="Award Description" rows="2"></textarea>
+          </mat-form-field>
+          <button mat-icon-button color="warn" type="button" (click)="removeAward(i)" aria-label="Remove award">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+        <button mat-raised-button color="accent" type="button" (click)="addAward()">Add Award</button>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+    <!-- References -->
+    <div>
+      <h3 matTooltip="Add references (people who can vouch for you)">References</h3>
+      <div formArrayName="references">
+        <div *ngFor="let ref of references.controls; let i=index" [formGroupName]="i" class="custom-section-block">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name" placeholder="Reference Name" required />
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Contact</mat-label>
+            <input matInput formControlName="contact" placeholder="Contact Info (email/phone)" />
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Relation</mat-label>
+            <input matInput formControlName="relation" placeholder="Relation (e.g. Manager, Professor)" />
+          </mat-form-field>
+          <button mat-icon-button color="warn" type="button" (click)="removeReference(i)" aria-label="Remove reference">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+        <button mat-raised-button color="accent" type="button" (click)="addReference()">Add Reference</button>
+      </div>
+    </div>
+  </form>
+</mat-card>

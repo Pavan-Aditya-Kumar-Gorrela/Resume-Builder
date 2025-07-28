@@ -11,6 +11,14 @@ import { SkillsComponent } from './builder/form-sections/skills/skills.component
 
 import { ModernTemplateComponent } from './preview/templates/modern-template/modern-template.component';
 import { ClassicTemplateComponent } from './preview/templates/classic-template/classic-template.component';
+import { ProfessionalTemplateComponent } from './preview/templates/professional-template/professional-template.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   declarations: [
@@ -21,12 +29,20 @@ import { ClassicTemplateComponent } from './preview/templates/classic-template/c
     ExperienceComponent,
     SkillsComponent,
     ModernTemplateComponent,
-    ClassicTemplateComponent
+    ClassicTemplateComponent,
+    ProfessionalTemplateComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCardModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatSelectModule,
+    MatDividerModule
   ],
   exports: [
     BuilderComponent,

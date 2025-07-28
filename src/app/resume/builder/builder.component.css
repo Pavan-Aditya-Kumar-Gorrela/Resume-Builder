@@ -1,0 +1,51 @@
+.full-width {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+mat-card {
+  max-width: 700px;
+  margin: 32px auto;
+  padding: 24px;
+}
+
+button[mat-raised-button] {
+  margin-top: 8px;
+  margin-bottom: 16px;
+}
+
+h3 {
+  margin-top: 24px;
+  margin-bottom: 8px;
+}
+
+.customization-controls {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 16px;
+}
+
+.customization-field {
+  min-width: 180px;
+}
+
+.color-swatch {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  margin-right: 8px;
+  border: 1px solid #ccc;
+  vertical-align: middle;
+}
+
+.custom-section-block {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.custom-section-block mat-form-field {
+  flex: 1;
+}

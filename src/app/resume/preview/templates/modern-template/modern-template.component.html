@@ -1,7 +1,17 @@
-<div class="modern-resume">
+<div class="modern-resume" [ngStyle]="{
+  'font-family': data.customization?.font || 'Roboto',
+  '--main-color': data.customization?.color || '#1976d2'
+}">
   <h1>{{ data.personal?.name || 'Your Name' }}</h1>
   <h3>{{ data.personal?.title || 'Your Title' }}</h3>
-  <p>Email: {{ data.personal?.email || 'your@email.com' }}</p>
+  <div class="contact-info">
+    <span *ngIf="data.personal?.email">{{ data.personal.email }}</span>
+    <span *ngIf="data.personal?.phone"> | {{ data.personal.phone }}</span>
+    <span *ngIf="data.personal?.linkedin"> | <a [href]="data.personal.linkedin" target="_blank">LinkedIn</a></span>
+    <span *ngIf="data.personal?.github"> | <a [href]="data.personal.github" target="_blank">GitHub</a></span>
+    <span *ngIf="data.personal?.portfolio"> | <a [href]="data.personal.portfolio" target="_blank">Portfolio</a></span>
+    <span *ngIf="data.personal?.twitter"> | <a [href]="data.personal.twitter" target="_blank">Twitter</a></span>
+  </div>
 
   <section>
     <h2>Experience</h2>
@@ -20,5 +30,46 @@
   <section>
     <h2>Skills</h2>
     <p>{{ data.skills?.join(', ') }}</p>
+  </section>
+
+  <section *ngIf="data.certifications?.length">
+    <h2>Certifications</h2>
+    <div *ngFor="let cert of data.certifications">
+      <strong>{{ cert.name }}</strong> <span *ngIf="cert.issuer">({{ cert.issuer }})</span> <span *ngIf="cert.year">- {{ cert.year }}</span>
+    </div>
+  </section>
+  <section *ngIf="data.projects?.length">
+    <h2>Projects</h2>
+    <div *ngFor="let project of data.projects">
+      <strong>{{ project.name }}</strong>
+      <span *ngIf="project.link"> - <a [href]="project.link" target="_blank">Link</a></span><br />
+      <span *ngIf="project.description">{{ project.description }}</span>
+    </div>
+  </section>
+  <section *ngIf="data.languages?.length">
+    <h2>Languages</h2>
+    <div *ngFor="let lang of data.languages">
+      {{ lang.name }} <span *ngIf="lang.proficiency">({{ lang.proficiency }})</span>
+    </div>
+  </section>
+  <section *ngIf="data.awards?.length">
+    <h2>Awards</h2>
+    <div *ngFor="let award of data.awards">
+      <strong>{{ award.name }}</strong> <span *ngIf="award.year">({{ award.year }})</span><br />
+      <span *ngIf="award.description">{{ award.description }}</span>
+    </div>
+  </section>
+  <section *ngIf="data.references?.length">
+    <h2>References</h2>
+    <div *ngFor="let ref of data.references">
+      <strong>{{ ref.name }}</strong> <span *ngIf="ref.relation">({{ ref.relation }})</span><br />
+      <span *ngIf="ref.contact">{{ ref.contact }}</span>
+    </div>
+  </section>
+  <section *ngIf="data.customSections?.length">
+    <div *ngFor="let section of data.customSections">
+      <h2>{{ section.title }}</h2>
+      <div>{{ section.content }}</div>
+    </div>
   </section>
 </div>

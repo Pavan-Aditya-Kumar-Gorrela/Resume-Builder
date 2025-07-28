@@ -7,6 +7,7 @@
   border-radius: 5px;
   width: 100%;
   box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  --main-color: #1976d2;
 }
 
 .header {
@@ -26,8 +27,9 @@ h1 {
 h2 {
   font-size: 1.2em;
   margin-bottom: 8px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--main-color);
   padding-bottom: 5px;
+  color: var(--main-color);
 }
 
 ul {

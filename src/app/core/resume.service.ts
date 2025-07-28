@@ -20,10 +20,29 @@ export class ResumeService {
 
   getDefaultResume() {
     return {
-      personal: { name: '', title: '', email: '' },
+      personal: {
+        name: '',
+        title: '',
+        email: '',
+        phone: '',
+        linkedin: '',
+        github: '',
+        portfolio: '',
+        twitter: ''
+      },
       education: [],
       experience: [],
-      skills: []
+      skills: [],
+      certifications: [],
+      projects: [],
+      languages: [],
+      awards: [],
+      references: [],
+      customSections: [], // Array of { title: string, content: string }
+      customization: {
+        font: 'Segoe UI',
+        color: '#1976d2'
+      }
     };
   }
 }
