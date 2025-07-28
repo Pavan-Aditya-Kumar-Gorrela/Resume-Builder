@@ -21,7 +21,7 @@
   <h2 class="app-tagline">Craft Your Professional Resume Effortlessly</h2>
   <p class="app-desc">Resuveda helps you create beautiful, modern resumes in minutes. Choose from stunning templates, customize every detail, and export to PDF instantly. No design skills required!</p>
   <a routerLink="/resume/builder">
-    <button mat-raised-button color="primary" class="cta-btn">Start Building Your Resume</button>
+    <button class="cta-btn">Start Building Your Resume</button>
   </a>
   <div class="sample-resumes">
     <img src="assets/sample-resume-1.png" alt="Sample Resume 1" />
@@ -49,6 +49,13 @@
 <router-outlet></router-outlet>
 
 <style>
+:root {
+  --pink-main: #e75480;
+  --pink-light: #f8e6ee;
+  --grey-main: #23272f;
+  --grey-light: #f4f4f7;
+  --grey-mid: #b0b3b8;
+}
 .landing-hero.polished-theme {
   display: flex;
   flex-direction: column;
@@ -56,32 +63,54 @@
   justify-content: flex-start;
   min-height: 92vh;
   padding: 48px 8px 0 8px;
-  background: linear-gradient(135deg, #e3f0ff 0%, #f8fbff 100%);
-  box-shadow: 0 2px 24px rgba(25, 118, 210, 0.04);
+  background: linear-gradient(135deg, var(--pink-light) 0%, var(--grey-light) 100%);
+  box-shadow: 0 2px 24px rgba(231, 84, 128, 0.04);
+}
+.toolbar {
+  background: var(--pink-main);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  height: 64px;
+  font-size: 1.3em;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(231, 84, 128, 0.08);
+}
+.toolbar img {
+  margin-right: 16px;
+}
+.spacer {
+  flex: 1 1 auto;
 }
 .hero-animation {
   margin-bottom: 24px;
 }
 .pulse-svg circle {
   transform-origin: 60px 60px;
+  fill: var(--pink-main);
+  opacity: 0.13;
+}
+.pulse-svg rect[x="38"] {
+  fill: var(--pink-main);
 }
 .app-title {
   font-size: 3em;
   font-weight: 800;
-  color: #1976d2;
+  color: var(--pink-main);
   margin: 0 0 10px 0;
   letter-spacing: 2px;
-  text-shadow: 0 2px 8px #e3f0ff;
+  text-shadow: 0 2px 8px var(--pink-light);
 }
 .app-tagline {
   font-size: 1.6em;
   font-weight: 400;
-  color: #333;
+  color: var(--grey-main);
   margin: 0 0 18px 0;
 }
 .app-desc {
   font-size: 1.15em;
-  color: #555;
+  color: var(--grey-mid);
   max-width: 520px;
   text-align: center;
   margin-bottom: 32px;
@@ -92,7 +121,17 @@
   margin-bottom: 40px;
   margin-top: 8px;
   border-radius: 32px;
-  box-shadow: 0 2px 12px rgba(25, 118, 210, 0.10);
+  background: var(--pink-main);
+  color: #fff;
+  border: none;
+  font-weight: 700;
+  box-shadow: 0 2px 12px rgba(231, 84, 128, 0.10);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+.cta-btn:hover {
+  background: #c13c6a;
+  transform: translateY(-2px) scale(1.03);
 }
 .sample-resumes {
   display: flex;
@@ -104,14 +143,14 @@
   height: 170px;
   object-fit: cover;
   border-radius: 12px;
-  box-shadow: 0 2px 16px rgba(25, 118, 210, 0.13);
+  box-shadow: 0 2px 16px rgba(231, 84, 128, 0.13);
   border: 2px solid #fff;
-  background: #f4f8fc;
+  background: var(--grey-light);
   transition: transform 0.2s;
 }
 .sample-resumes img:hover {
   transform: scale(1.04) translateY(-4px);
-  box-shadow: 0 6px 24px rgba(25, 118, 210, 0.18);
+  box-shadow: 0 6px 24px rgba(231, 84, 128, 0.18);
 }
 .features-list {
   margin-top: 8px;
@@ -119,11 +158,11 @@
   text-align: left;
   background: #fff;
   border-radius: 12px;
-  box-shadow: 0 2px 12px rgba(25, 118, 210, 0.07);
+  box-shadow: 0 2px 12px rgba(231, 84, 128, 0.07);
   padding: 24px 32px;
 }
 .features-list h3 {
-  color: #1976d2;
+  color: var(--pink-main);
   margin-bottom: 12px;
   font-size: 1.25em;
 }
@@ -138,6 +177,24 @@
   display: flex;
   align-items: center;
   gap: 10px;
+}
+footer {
+  background: var(--grey-light);
+  color: var(--grey-main);
+  padding: 24px 0 16px 0;
+  font-size: 1.1em;
+  border-top: 1px solid var(--grey-mid);
+  margin-top: 40px;
+  text-align: center;
+}
+footer a {
+  color: var(--pink-main);
+  text-decoration: none;
+  font-weight: 500;
+  margin-left: 8px;
+}
+footer a:hover {
+  text-decoration: underline;
 }
 @media (max-width: 900px) {
   .sample-resumes img {

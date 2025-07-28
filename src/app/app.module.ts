@@ -5,7 +5,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { ResumeModule } from './resume/resume.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ResumePageComponent } from './resume/resume-page.component';
 
 const routes: Routes = [
@@ -23,7 +22,6 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     ResumeModule,
-    BrowserAnimationsModule,
     RouterModule.forRoot(routes)
   ],
   providers: [],
