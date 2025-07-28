@@ -1,0 +1,24 @@
+<div class="modern-resume">
+  <h1>{{ data.personal?.name || 'Your Name' }}</h1>
+  <h3>{{ data.personal?.title || 'Your Title' }}</h3>
+  <p>Email: {{ data.personal?.email || 'your@email.com' }}</p>
+
+  <section>
+    <h2>Experience</h2>
+    <div *ngFor="let exp of data.experience || []">
+      <strong>{{ exp.role }}</strong> at {{ exp.company }} ({{ exp.years }})
+    </div>
+  </section>
+
+  <section>
+    <h2>Education</h2>
+    <div *ngFor="let edu of data.education || []">
+      {{ edu.degree }} - {{ edu.institution }} ({{ edu.year }})
+    </div>
+  </section>
+
+  <section>
+    <h2>Skills</h2>
+    <p>{{ data.skills?.join(', ') }}</p>
+  </section>
+</div>

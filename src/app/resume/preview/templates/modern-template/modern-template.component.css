@@ -1,0 +1,8 @@
+.modern-resume {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  padding: 30px;
+  border-radius: 15px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}

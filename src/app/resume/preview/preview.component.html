@@ -1,0 +1,17 @@
+<div class="export-container">
+  <button (click)="exportPDF()">Download PDF</button>
+</div>
+
+<div>
+  <label>Select Template:</label>
+  <select [(ngModel)]="template">
+    <option value="modern">Modern</option>
+    <option value="classic">Classic</option>
+  </select>
+</div>
+<div id="resume-content">
+<div [ngSwitch]="template">
+  <app-modern-template *ngSwitchCase="'modern'" [data]="resumeData"></app-modern-template>
+  <app-classic-template *ngSwitchCase="'classic'" [data]="resumeData"></app-classic-template>
+</div>
+</div>
